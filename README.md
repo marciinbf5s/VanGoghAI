@@ -1,6 +1,11 @@
 # 🎨 Van Gogh AI - Gerador de Imagens com IA
 
 <div align="center">
+  <img src="vangogh.png" alt="Interface do Van Gogh AI" width="800">
+  
+  *Interface da aplicação Van Gogh AI*
+  
+  ---
   <img src="https://img.shields.io/badge/Python-3.8+-blue?logo=python&logoColor=white" alt="Python 3.8+">
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch">
   <img src="https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white" alt="Flask">
