@@ -1,0 +1,500 @@
+body {
+    font-family: 'Poppins';
+    width: 100%;
+    height: 100%;
+    --s: 200px; /* control the size */
+    --c1: #222222;
+    --c2: #4b4a4a;
+    --c3: #3d3d3d;
+  
+    --_g: var(--c1) 10%, var(--c2) 10.5% 19%, #0000 19.5% 80.5%,
+      var(--c2) 81% 89.5%, var(--c3) 90%;
+    --_c: from -90deg at 37.5% 50%, #0000 75%;
+    --_l1: linear-gradient(145deg, var(--_g));
+    --_l2: linear-gradient(35deg, var(--_g));
+    background: var(--_l1), var(--_l1) calc(var(--s) / 2) var(--s), var(--_l2),
+      var(--_l2) calc(var(--s) / 2) var(--s),
+      conic-gradient(var(--_c), var(--c1) 0) calc(var(--s) / 8) 0,
+      conic-gradient(var(--_c), var(--c3) 0) calc(var(--s) / 2) 0,
+      linear-gradient(
+        90deg,
+        var(--c3) 38%,
+        var(--c1) 0 50%,
+        var(--c3) 0 62%,
+        var(--c1) 0
+      );
+    background-size: var(--s) calc(2 * var(--s) / 3);
+  }
+  
+  h1 {
+    color: #fff;
+    font-size: 5rem;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 20px 0;
+    text-shadow: 0 0 10px rgba(63, 233, 255, 0.7);
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #3fe9ff, #0066ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+h1:hover {
+    text-shadow: 0 0 20px rgba(63, 233, 255, 0.9);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 13%;
+  }
+  
+  /* From Uiverse.io by Spacious74 */ 
+  .button {
+      cursor: pointer;
+      font-size: 1.4rem;
+      border-radius: 16px;      
+      border: none;
+      padding: 2px;
+      background: radial-gradient(circle 80px at 80% -10%, #ffffff, #181b1b);
+      position: relative;
+    }
+    .button::after {
+      content: "";
+      position: absolute;
+      width: 65%;
+      height: 60%;
+      border-radius: 120px;
+      top: 0;
+      right: 0;
+      box-shadow: 0 0 20px #ffffff38;
+      z-index: -1;
+    }
+    
+    .blob1 {
+      position: absolute;
+      width: 70px;
+      height: 100%;
+      border-radius: 16px;
+      bottom: 0;
+      left: 0;
+      background: radial-gradient(
+        circle 60px at 0% 100%,
+        #3fe9ff,
+        #0000ff80,
+        transparent
+      );
+      box-shadow: -10px 10px 30px #0051ff2d;
+    }
+    
+    .inner {
+      padding: 14px 25px;
+      border-radius: 14px;
+      color: #fff;
+      z-index: 3;
+      position: relative;
+      background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+    }
+    .inner::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-radius: 14px;
+      background: radial-gradient(
+        circle 60px at 0% 100%,
+        #00e1ff1a,
+        #0000ff11,
+        transparent
+      );
+      position: absolute;
+    }
+    
+    .blob2 {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      right: 10px;
+      top: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00f0ff88, transparent);
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+    
+    .button:hover .blob2 {
+      transform: scale(1.2);
+      opacity: 0.6;
+    }
+    
+    .button:hover .blob1 {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+    
+    .button:hover .inner {
+      background: radial-gradient(circle 80px at 80% -50%, #aaaaaa, #0f1111);
+    }
+    
+  /* Estilos para o modal de carregamento */
+  #modalLoading .modal-content {
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  #modalLoading .modal-body {
+    padding: 2.5rem !important;
+  }
+
+  /* Container principal do loader no modal */
+  .loader-container {
+      display: flex;
+      flex-direction: row;      /* coloca loader e texto lado a lado */
+      align-items: center;      /* centraliza verticalmente */
+      justify-content: flex-start; /* alinha no início horizontalmente */
+      gap: 0.8rem;              /* espaço entre spinner e texto */
+      padding-top: 10px;        /* espaço no topo do modal */
+  }
+  
+  /* Área do spinner */
+  .loader-wrapper {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: transparent;
+      margin: 0 auto 20px;
+  }
+  
+  /* Animação do spinner */
+  .loader {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background-color: transparent;
+      animation: loader-rotate 2s linear infinite;
+      z-index: 0;
+  }
+  
+  /* Cores e rotação do efeito */
+  @keyframes loader-rotate {
+      0% {
+        transform: rotate(90deg);
+        box-shadow:
+          0 10px 20px 0 #fff inset,
+          0 20px 30px 0 #ad5fff inset,
+          0 60px 60px 0 #271c53 inset;
+      }
+      50% {
+        transform: rotate(270deg);
+        box-shadow:
+          0 10px 20px 0 #fff inset,
+          0 20px 10px 0 #d60a47 inset,
+          0 40px 60px 0 #311e80 inset;
+      }
+      100% {
+        transform: rotate(450deg);
+        box-shadow:
+          0 10px 20px 0 #fff inset,
+          0 20px 30px 0 #ad5fff inset,
+          0 60px 60px 0 #471eec inset;
+      }
+  }
+  
+  /* Texto no modal de carregamento */
+  .loader-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700; /* Negrito mais forte */
+      color: #ffffff; /* Branco puro */
+      margin-bottom: 0.5rem;
+  }
+  
+  /* Texto secundário no modal de carregamento */
+  .loader-container p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9); /* Menos transparente */
+      margin: 0;
+  }
+  
+  @media screen and (max-width: 600px) {
+    body {
+        font-size: 1.1rem; /* leve ajuste para manter legibilidade */
+        padding: 1rem; /* espaço interno para evitar bordas coladas */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    input, button {
+        width: 80%; /* largura relativa que escala bem */
+        max-width: 300px; /* limita tamanho máximo para não esticar demais */
+        margin: 0.5rem 0;
+        padding: 0.6rem 1rem;
+        box-sizing: border-box;
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+    label {
+        font-size: 1.3rem;
+        display: block; /* para ficar acima dos inputs e manter alinhamento */
+        margin-bottom: 0.3rem;
+        text-align: left;
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+
+#imagemGerada {
+    opacity: 0;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transform: translateZ(0); /* Melhora a performance da animação */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: aparecer 0.1s 2.4s forwards;
+  }
+  
+  #imagemGerada::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #1a1a1a 25%, #2a2a2a 25%, #2a2a2a 50%, #1a1a1a 50%, #1a1a1a 75%, #2a2a2a 75%);
+    background-size: 20px 20px;
+    z-index: 2;
+    animation: pincelada 2.5s steps(1) forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  
+  @keyframes pincelada {
+    0% {
+      transform: scaleX(0) skewX(0deg);
+      opacity: 1;
+    }
+    15% {
+      transform: scaleX(0.3) skewX(-5deg);
+      opacity: 1;
+    }
+    30% {
+      transform: scaleX(0.45) skewX(3deg);
+      opacity: 1;
+    }
+    45% {
+      transform: scaleX(0.6) skewX(-2deg);
+      opacity: 1;
+    }
+    60% {
+      transform: scaleX(0.75) skewX(4deg);
+      opacity: 1;
+    }
+    75% {
+      transform: scaleX(0.9) skewX(-3deg);
+      opacity: 1;
+    }
+    90% {
+      transform: scaleX(0.95) skewX(2deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scaleX(1) skewX(0);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes aparecer {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Efeito de tinta secando após a pintura */
+  #imagemGerada::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    opacity: 0;
+    animation: secagem 1s 2.5s forwards;
+  }
+  
+  @keyframes secagem {
+    0% {
+      opacity: 0.8;
+      background: rgba(0, 0, 0, 0.8);
+    }
+    100% {
+      opacity: 0;
+      background: rgba(0, 0, 0, 0);
+    }
+  }
+
+
+  .input-com-icone {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+  }
+  
+  .input-com-icone textarea {
+    width: 100%;
+    min-height: 4.5rem; /* altura inicial */
+    max-height: 12rem; /* altura máxima antes de rolar */
+    padding: 1rem 3.2rem 1rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    background-color: #1b1b1b;
+    color: #fff;
+    resize: none; /* desabilita o redimensionamento manual */
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    line-height: 1.5;
+    overflow-y: auto; /* ativa barra de rolagem vertical só se ultrapassar max-height */
+  }
+  
+  
+  .input-com-icone .icone-anexar {
+    position: absolute;
+    right: 12px;
+    top: 1rem;
+    transform: translateY(0%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #55ccff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+  
+  
+  .arquivo-info {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .btn-remover {
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+  }
+  
+  /* Botão de anexar */
+  .btn-anexar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(85, 204, 255, 0.05);
+    border: 1px dashed rgba(85, 204, 255, 0.3);
+    color: #55ccff;
+    padding: 12px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    width: 100%;
+    transition: all 0.2s;
+    margin: 15px 0;
+    overflow: hidden;
+  }
+
+  .btn-anexar:hover {
+    background: rgba(85, 204, 255, 0.1);
+    border-color: #55ccff;
+  }
+
+  .btn-anexar .icon {
+    font-size: 16px;
+    transition: transform 0.2s;
+  }
+
+  .btn-anexar:hover .icon {
+    transform: scale(1.1);
+  }
+
+  /* Esconder o input de arquivo padrão */
+  .btn-anexar input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .btn-mascara {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(85, 204, 255, 0.1);
+    border: 1px dashed #55ccff;
+    border-radius: 20px;
+    padding: 6px 15px;
+    color: #55ccff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  
+  .btn-mascara:hover {
+    background: rgba(85, 204, 255, 0.2);
+  }
+  
+  .btn-mascara input[type="file"] {
+    display: none;
+  }
+  

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van Gogh AI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/fluency/48/paint-palette.png">
+
+</head>
+
+<body>
+  <div class="container">
+    <h1>Van Gogh AI</h1>
+    
+    <div class="input-com-icone">
+      <textarea id="prompt" name="prompt" placeholder="Ex: Um pôr do sol no horizonte em uma ilha" required></textarea>
+      <label for="imagem-base" class="icone-anexar" title="Anexar imagem base">
+        <span>📎</span>
+        <input type="file" id="imagem-base" accept="image/*" style="display: none;">
+      </label>
+    </div>
+    
+      
+      <div id="container-arquivos" style="display: none; margin-bottom: 15px;">
+        <div class="arquivo-info">
+          <span id="nome-arquivo-base"></span>
+          <button type="button" class="btn-remover" data-tipo="base">×</button>
+        </div>
+        <img id="preview-imagem" style="max-width: 200px; display: none; margin-top: 10px; border-radius: 6px;" alt="Preview da imagem">
+      </div>
+      
+    
+      <button class="button" id="btn-gerar-imagem">
+          <div class="blob1"></div>
+          <div class="blob2"></div>
+          <div class="inner">Gerar Imagem</div>
+      </button>
+        
+      <div class="modal fade" id="modalLoading" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center" style="background-color: rgba(18, 18, 18, 0.95); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div class="modal-body p-5">
+                <div class="loader-container d-flex flex-column align-items-center justify-content-center">
+                  <div class="loader-wrapper mb-3">
+                    <div class="loader"></div>
+                  </div>
+                  <h5 class="loader-text">Gerando sua imagem</h5>
+                  <p class="loader-subtext">Isso pode levar alguns instantes...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>     
+    </div>  
+
+  <!-- Modal de Resultado -->
+    <div class="modal fade" id="modalResultado" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4 text-center" style="background-color: #121212; color: #fff; border: none;">
+          <h5 class="mb-3">Imagem Gerada</h5>
+          <img id="imagemGerada" src="" alt="Imagem gerada" class="img-fluid rounded mb-3">
+          <a id="btnDownload" href="#" download="imagem_vangogh.png" class="btn btn-primary">
+            <i class="fas fa-download"></i> Baixar Imagem
+            </a>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="{{ url_for('static', filename='js/file-upload.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
